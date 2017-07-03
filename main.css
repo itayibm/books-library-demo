@@ -1,0 +1,53 @@
+﻿html {
+    /*background-color: #7B68EE;*/
+}
+.containerMainBtn {
+    background-color: #a7a7a7;
+}
+
+.txtMainBtn {
+    color: wheat;
+    font-family:Gabriola;
+    font-size:50px;
+}
+
+.title {
+    font-family: Gabriola;
+    font-size: 60px;
+    color: #fff
+}
+
+.txtCardoutput {
+    font-family: Monaco;
+}
+
+.type {
+    /*width: 400px;
+    height: 400px;
+    margin: 50px auto;*/
+    font-size:130px; 
+    text-align: center;
+    color: #F5C4B6;
+    line-height: 0.85;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+}
+.input_Add{
+  height:25px;
+}
+.errorContainer{
+    position:absolute;
+    background-color:#974663;
+    border:solid;
+    color:#432;
+    border-width:2px;
+   width:100%;
+}
+.errorNsg {
+    font-size:40px;
+    font-family: Gabriola;
+    color: #bf4a4a;
+}
+.btn_error{
+    background-color:#a98277;
+}

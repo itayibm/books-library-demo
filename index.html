@@ -1,0 +1,231 @@
+﻿
+ <!------------Itay--Ben--Moshe---------------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css">
+    <link rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+</head>
+                                       
+<body ng-app="demoApp">
+  <!--main controller-->
+    <div ng-controller="booksService">      
+        <div class="row" style="background-color:#3bc1bc">
+            <div class="col-lg-5">
+
+            </div>
+            <div class="col-lg-5">           
+                
+                    <h1 class="title">{{title}}</h1>
+               
+              
+            </div>         
+        </div>
+       
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="https://cdn3.iconfinder.com/data/icons/glypho-free/64/pen-checkbox-48.png" ng-click="editBook()" />
+                <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678092-sign-add-48.png" ng-click="addBook()" />
+
+
+                <label> <input ng-model="searchText" placeholder="Searche"></label>
+
+            </div>  
+            <div class="col-lg-9">
+              
+            </div>
+         
+            
+        </div>
+       
+     <!--rows of cards-->
+        <div class="row">
+            <div class="col-lg-3 containerMainBtn">
+
+                <h3 class="txtMainBtn " ng-show="errorMsg" ng-hide="div_newBook">Add new book</h3>
+             
+                  
+                     
+                            <h4 style="background-color:white;" class="errorNsg"  ng-hide="errorMsg">The title:"{{newBook.Title}}"  <br>already exist</h4>
+                            <input style="background-color:white;" ng-hide="errorMsg" accept="" class="  " type="button" value="ok" ng-click="BtnErrorOk()" />
+                      
+                   
+              
+                <div class="row">
+                    <div class="col-lg-1" ng-hide="div_newBook">
+                        </div>
+                        <div class="col-lg-2" ng-hide="div_newBook">
+
+
+
+                            <input type="text" ng-model="newBook.Title" placeholder="Title" />
+                        </div>
+
+                    </div>
+                <div class="row">
+                    <div class="col-lg-1" ng-hide="div_newBook">
+                    </div>
+                    <div class="col-lg-2" ng-hide="div_newBook">
+                        <input type="text" ng-model="newBook.Autuor" placeholder="Autuor" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1" ng-hide="div_newBook">
+                    </div>
+                    <div class="col-lg-2" ng-hide="div_newBook">
+                        <input type="text" ng-model="newBook.Date" placeholder="Date" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1" ng-hide="div_newBook">
+                    </div>
+                    <div class="col-lg-2" ng-hide="div_newBook">
+                        <input type="text" ng-model="newBook.Img" placeholder="Img" />
+                        <a href="#" class="btn btn-primary" ng-mouseover="" title="Add New Book" value="Add New Book" ng-click="addBookNew(newBook)">Add</a>
+                    </div>
+                </div>
+
+               <style>
+
+               </style>
+
+
+                <!--<div class="errorContainer col-lg-3" ng-hide="errorMsg">
+            <div class=" row">
+                {{newBook.Title}}<p>already exist</p>
+            </div>
+
+        </div>-->
+            </div>
+            <div class="col-lg-8  container" max-height:300px">              
+              
+                <div class="row container" ng-class="book" ng-hide="hideContactInfo">
+                   
+                    <div class="card" style="width: 16rem;" ng-repeat="book in books |filter:searchText">
+
+                        <img class="card-img-top" style="   height:300px" src="{{book.Img}}" alt="">
+                        <div class="card-block">
+                            <div ng-hide="showEditInput" class="row">
+                                <input type="text" class="col-lg-4" ng-mouseover="biggerCard" ng-model="edit.Title" autofocus placeholder="Title" />
+                                <input type="text" class="col-lg-4" ng-model="edit.Autuor" autofocus placeholder="Autuor" />
+                                <input type="text" class="col-lg-4" ng-model="edit.Date" autofocus placeholder="Date" />
+
+                            </div>
+                            <h4  class="card-title txtCardoutput">{{book.Title}}</h4>
+                            <h5 class="card-text txtCardoutput">{{book.Autuor}}</h5>
+                            <p class="card-text txtCardoutput">{{book.Date}}</p>
+
+                            <div class="row" ng-hide="btnBook">
+                                
+                                <input class="btn btn-primary col-lg-5" type="button" value="Remove" ng-click="removeBook(book)" />
+                                <input class="btn btn-primary col-lg-4" type="button" value="Save"  ng-click="update(edit,book)" />
+                                <img class="col-log-3"  src="https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/close-48.png" ng-hide="showEditInput" ng-click="clearAll(edit)""/>
+                            
+
+                            </div>
+                            <div>
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        
+        
+           
+            <div>
+
+            </div>
+            </div>
+      
+        </div>
+
+      <div class="row" style="background-color:#fff">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-8">
+              <div ng-show="div_newBook" ng-hide="showContact" disabled>
+                  <div class="col-lg-3">
+                      <h3 class="txtMainBtn">Contact</h3>
+
+                  </div>
+
+                  <div class="col-lg-3">
+
+                      <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/phone-32.png" />
+                      <!--<span class="txtMainBtn">Phone:</span>-->
+                      <!--<input type="text" id="myTextPhone" placeholder="050-9786415" />-->
+                      <span>050-9786415</span>
+                  </div>
+
+                  <div class="col-lg-4">
+                      <img src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/18_email-32.png" />
+                      <!--<span class="txtMainBtn">Email:</span>-->
+                      <!--<input type="text" id="myTextEmail" placeholder="itaibm1988@gmail.com" />-->
+                      <span>itaibm1988@gmail.com</span>
+                  </div>
+                  <div class="col-lg-5">
+
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-lg-3">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQARBOa33617yO_Mw_I-V_8Fzf5pwMv96ofdGseV8_Ppv8r2L8EZg" />
+          </div>
+      </div>
+ 
+     <script>
+         document.getElementById("myTextPhone").disabled = true;
+         document.getElementById("myTextEmail").disabled = true;
+     </script>
+
+
+    
+  
+    <!-- models-->
+    <!--<script src="scripts/models/person.js"></script>-->
+    <script src="Models/Book.js"></script>
+   
+  
+    <!-- libs-->
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular/angular-route.js"></script>
+    <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+    <script src="libs/google-charts/ng-google-chart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+           
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+    <!-- scripts -->
+    <script src="Scripts/app.js"></script>
+    <!-- services-->
+    <script src="Services/books.js"></script>
+    <script src="Services/Arraybook.js"></script>
+    <!--<script src="scripts/services/movieSrv2.js"></script>-->
+    <!-- controllers-->
+   
+    <script src="Scripts/booksService.js"></script>
+  
+    <!-- directive -->
+   
+</body>
+</html>
